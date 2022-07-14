@@ -1,5 +1,6 @@
 package br.com.vemser.pessoaapi.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @Getter
@@ -9,5 +10,6 @@ import lombok.*;
 @ToString
 public class PessoaDadosPessoaisDTO extends PessoaDadosPessoaisCreateDTO{
 
+    @Schema(description = "ID exclusivo da pessoa")
     private Integer idPessoa;
 }

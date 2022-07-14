@@ -33,25 +33,31 @@ public class PessoaDadosPessoaisCreateDTO {
     @Size(max = 11, min = 11, message = "O CPF deve conter somente 11 números.")
     private String cpf;
 
-    @Schema(description = "Email")
+    @Schema(description = "Email da pessoa")
     @NotBlank
     private String email;
 
+    @Schema(description = "Número de CNH da pessoa")
     @NotBlank
     private String cnh;
 
+    @Schema(description = "Nome da mãe da pessoa")
     @NotBlank
     private String nomeMae;
 
+    @Schema(description = "Nome do pai da pessoa")
     @NotBlank
     private String nomePai;
 
+    @Schema(description = "Número do RG da pessoa")
     @NotBlank
     private String rg;
 
+    @Schema(description = "Sexo da pessoa")
     @NotBlank
     private TipoSexo sexo;
 
+    @Schema(description = "Número do título de eleitor da pessoa")
     @NotBlank
     private String tituloEleitor;
 }
