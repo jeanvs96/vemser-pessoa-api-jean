@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PessoaDadosPessoaisService {
@@ -23,7 +24,33 @@ public class PessoaDadosPessoaisService {
     private ObjectMapper objectMapper;
 
     public List<PessoaDadosPessoaisDTO> list() {
-        return listBuilder();
+        List<PessoaDadosPessoaisDTO> pessoaDadosPessoaisDTO = new ArrayList<>();
+        List<PessoaDTO> pessoasDTO = pessoaService.list();
+
+        for (int i = 0; i < pessoasDTO.size(); i++) {
+            pessoaDadosPessoaisDTO.add(new PessoaDadosPessoaisDTO());
+            pessoaDadosPessoaisDTO.get(i).setIdPessoa(pessoasDTO.get(i).getIdPessoa());
+            pessoaDadosPessoaisDTO.get(i).setNome(pessoasDTO.get(i).getNome());
+            pessoaDadosPessoaisDTO.get(i).setCpf(pessoasDTO.get(i).getCpf());
+            pessoaDadosPessoaisDTO.get(i).setDataNascimento(pessoasDTO.get(i).getDataNascimento());
+            pessoaDadosPessoaisDTO.get(i).setEmail(pessoasDTO.get(i).getEmail());
+        }
+
+        for (PessoaDadosPessoaisDTO pessoaDPDTO : pessoaDadosPessoaisDTO) {
+            Optional<DadosPessoaisDTO> dadosPessoaisDTO = dadosPessoaisService.getAll()
+                    .stream()
+                    .filter(dadosPessoais -> dadosPessoais.getCpf().equals(pessoaDPDTO.getCpf()))
+                    .findAny();
+            if (dadosPessoaisDTO.isPresent()) {
+                pessoaDPDTO.setCnh(dadosPessoaisDTO.get().getCnh());
+                pessoaDPDTO.setNomeMae(dadosPessoaisDTO.get().getNomeMae());
+                pessoaDPDTO.setNomePai(dadosPessoaisDTO.get().getNomePai());
+                pessoaDPDTO.setRg(dadosPessoaisDTO.get().getRg());
+                pessoaDPDTO.setSexo(dadosPessoaisDTO.get().getSexo());
+                pessoaDPDTO.setTituloEleitor(dadosPessoaisDTO.get().getTituloEleitor());
+            }
+        }
+        return pessoaDadosPessoaisDTO;
     }
 
     public PessoaDadosPessoaisDTO create(PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO) throws RegraDeNegocioException {
@@ -54,10 +81,9 @@ public class PessoaDadosPessoaisService {
     public void delete(Integer idPessoa) throws RegraDeNegocioException {
         Pessoa pessoa = pessoaService.listByIdPessoa(idPessoa);
         pessoaService.delete(idPessoa);
-        for (DadosPessoaisDTO dadosPessoaisDTO : dadosPessoaisService.getAll()) {
-            if (pessoa.getCpf().equals(dadosPessoaisDTO.getCpf())){
-                dadosPessoaisService.delete(pessoa.getCpf());
-            }
+        if (dadosPessoaisService.getAll().stream()
+                .anyMatch(dadosPessoaisDTO -> dadosPessoaisDTO.getCpf().equals(pessoa.getCpf()))) {
+            dadosPessoaisService.delete(pessoa.getCpf());
         }
     }
 
@@ -87,36 +113,7 @@ public class PessoaDadosPessoaisService {
         return dadosPessoaisDTO;
     }
 
-    public List<PessoaDadosPessoaisDTO> listBuilder (){
-        List<PessoaDadosPessoaisDTO> pessoaDadosPessoaisDTO = new ArrayList<>();
-        List<PessoaDTO> pessoasDTO = pessoaService.list();
-        List<DadosPessoaisDTO> dadosPessoaisDTO = dadosPessoaisService.getAll();
-
-        for (int i = 0; i < pessoasDTO.size(); i++) {
-            pessoaDadosPessoaisDTO.add(new PessoaDadosPessoaisDTO());
-            pessoaDadosPessoaisDTO.get(i).setIdPessoa(pessoasDTO.get(i).getIdPessoa());
-            pessoaDadosPessoaisDTO.get(i).setNome(pessoasDTO.get(i).getNome());
-            pessoaDadosPessoaisDTO.get(i).setCpf(pessoasDTO.get(i).getCpf());
-            pessoaDadosPessoaisDTO.get(i).setDataNascimento(pessoasDTO.get(i).getDataNascimento());
-            pessoaDadosPessoaisDTO.get(i).setEmail(pessoasDTO.get(i).getEmail());
-        }
-
-        for (int i = 0; i < pessoaDadosPessoaisDTO.size(); i++) {
-            for (int j = 0; j < dadosPessoaisDTO.size(); j++) {
-                if (pessoaDadosPessoaisDTO.get(i).getCpf().equals(dadosPessoaisDTO.get(j).getCpf())) {
-                    pessoaDadosPessoaisDTO.get(i).setCnh(dadosPessoaisDTO.get(j).getCnh());
-                    pessoaDadosPessoaisDTO.get(i).setNomeMae(dadosPessoaisDTO.get(j).getNomeMae());
-                    pessoaDadosPessoaisDTO.get(i).setNomePai(dadosPessoaisDTO.get(j).getNomePai());
-                    pessoaDadosPessoaisDTO.get(i).setRg(dadosPessoaisDTO.get(j).getRg());
-                    pessoaDadosPessoaisDTO.get(i).setSexo(dadosPessoaisDTO.get(j).getSexo());
-                    pessoaDadosPessoaisDTO.get(i).setTituloEleitor(dadosPessoaisDTO.get(j).getTituloEleitor());
-                }
-            }
-        }
-        return pessoaDadosPessoaisDTO;
-    }
-
-    public PessoaDadosPessoaisDTO CreateDTOToPessoaDadosPessoaisDTO (PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO){
+    public PessoaDadosPessoaisDTO CreateDTOToPessoaDadosPessoaisDTO(PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO) {
         return objectMapper.convertValue(pessoaDadosPessoaisCreateDTO, PessoaDadosPessoaisDTO.class);
     }
 }
