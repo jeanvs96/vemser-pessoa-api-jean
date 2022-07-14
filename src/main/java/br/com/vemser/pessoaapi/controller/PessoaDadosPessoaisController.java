@@ -67,7 +67,7 @@ public class PessoaDadosPessoaisController {
     @Operation(summary = "Deletar pessoa", description = "Deleta uma pessoa e todos os seus dados pessoais, localizando-a pelo ID da pessoa")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "200", description = "Retorna somente o Status code da requisição HTTP"),
+                    @ApiResponse(responseCode = "200", description = "Retorna somente o Status Code da requisição HTTP"),
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
                     @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
             }
