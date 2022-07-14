@@ -23,7 +23,7 @@ import java.util.List;
 public class PessoaDadosPessoaisController {
 
     @Autowired
-    PessoaDadosPessoaisService pessoaDadosPessoaisService;
+    private PessoaDadosPessoaisService pessoaDadosPessoaisService;
 
     @Operation(summary = "Listar pessoas", description = "Lista todas as pessoas, com todos os seus dados pessoais")
     @ApiResponses(
