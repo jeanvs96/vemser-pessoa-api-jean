@@ -1,6 +1,7 @@
 package br.com.vemser.pessoaapi.controller;
 
 
+import br.com.vemser.pessoaapi.dto.PessoaDadosPessoaisCreateDTO;
 import br.com.vemser.pessoaapi.dto.PessoaDadosPessoaisDTO;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.service.PessoaDadosPessoaisService;
@@ -24,7 +25,17 @@ public class PessoaDadosPessoaisController {
     }
 
     @PostMapping
-    public ResponseEntity<PessoaDadosPessoaisDTO> create(@RequestBody PessoaDadosPessoaisDTO pessoaDadosPessoaisDTO) throws RegraDeNegocioException {
-        return new ResponseEntity(pessoaDadosPessoaisService.create(pessoaDadosPessoaisDTO), HttpStatus.OK);
+    public ResponseEntity<PessoaDadosPessoaisDTO> create(@RequestBody PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO) throws RegraDeNegocioException {
+        return new ResponseEntity(pessoaDadosPessoaisService.create(pessoaDadosPessoaisCreateDTO), HttpStatus.OK);
+    }
+
+    @PutMapping("/{idPessoa}")
+    public ResponseEntity<PessoaDadosPessoaisDTO> update(@PathVariable("idPessoa") Integer idPessoa, @RequestBody PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO) throws RegraDeNegocioException {
+        return new ResponseEntity(pessoaDadosPessoaisService.update(idPessoa, pessoaDadosPessoaisCreateDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{idPessoa}")
+    public void delete(@PathVariable ("idPessoa") Integer idPessoa) throws RegraDeNegocioException {
+        pessoaDadosPessoaisService.delete(idPessoa);
     }
 }

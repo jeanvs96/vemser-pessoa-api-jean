@@ -1,10 +1,9 @@
 package br.com.vemser.pessoaapi.service;
 
-import br.com.vemser.pessoaapi.dto.DadosPessoaisDTO;
-import br.com.vemser.pessoaapi.dto.PessoaCreateDTO;
-import br.com.vemser.pessoaapi.dto.PessoaDTO;
-import br.com.vemser.pessoaapi.dto.PessoaDadosPessoaisDTO;
+import br.com.vemser.pessoaapi.dto.*;
+import br.com.vemser.pessoaapi.entity.Pessoa;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,41 +19,72 @@ public class PessoaDadosPessoaisService {
     @Autowired
     private DadosPessoaisService dadosPessoaisService;
 
-    public PessoaDadosPessoaisDTO create(PessoaDadosPessoaisDTO pessoaDadosPessoaisDTO) throws RegraDeNegocioException {
-        pessoaDadosPessoaisDTO.setIdPessoa(PessoaDadosPessoaisToPessoaDTO(pessoaDadosPessoaisDTO).getIdPessoa());
-        PessoaDadosPessoaisToDadosPessoaisDTO(pessoaDadosPessoaisDTO);
-
-        return pessoaDadosPessoaisDTO;
-    }
-
-    public PessoaDTO PessoaDadosPessoaisToPessoaDTO(PessoaDadosPessoaisDTO pessoaDadosPessoaisDTO) throws RegraDeNegocioException {
-        PessoaCreateDTO pessoaCreateDTO = new PessoaCreateDTO();
-
-        pessoaCreateDTO.setNome(pessoaDadosPessoaisDTO.getNome());
-        pessoaCreateDTO.setCpf(pessoaDadosPessoaisDTO.getCpf());
-        pessoaCreateDTO.setDataNascimento(pessoaDadosPessoaisDTO.getDataNascimento());
-        pessoaCreateDTO.setEmail(pessoaDadosPessoaisDTO.getEmail());
-
-        return pessoaService.create(pessoaCreateDTO);
-    }
+    @Autowired
+    private ObjectMapper objectMapper;
 
     public List<PessoaDadosPessoaisDTO> list() {
         return listBuilder();
     }
 
-    public void PessoaDadosPessoaisToDadosPessoaisDTO(PessoaDadosPessoaisDTO pessoaDadosPessoaisDTO) {
+    public PessoaDadosPessoaisDTO create(PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO) throws RegraDeNegocioException {
+        PessoaDTO pessoaDTO = pessoaService.create(
+                convertToPessoaDTO(pessoaDadosPessoaisCreateDTO));
+
+        dadosPessoaisService.post(
+                convertToDadosPessoaisDTO(pessoaDadosPessoaisCreateDTO));
+
+        PessoaDadosPessoaisDTO pessoaDadosPessoaisDTO = CreateDTOToPessoaDadosPessoaisDTO(pessoaDadosPessoaisCreateDTO);
+        pessoaDadosPessoaisDTO.setIdPessoa(pessoaDTO.getIdPessoa());
+
+        return pessoaDadosPessoaisDTO;
+    }
+
+    public PessoaDadosPessoaisDTO update(Integer idPessoa, PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO) throws RegraDeNegocioException {
+        PessoaCreateDTO pessoaCreateDTO = convertToPessoaDTO(pessoaDadosPessoaisCreateDTO);
+        pessoaService.update(idPessoa, pessoaCreateDTO);
+        DadosPessoaisDTO dadosPessoaisDTO = convertToDadosPessoaisDTO(pessoaDadosPessoaisCreateDTO);
+        dadosPessoaisService.put(pessoaDadosPessoaisCreateDTO.getCpf(), dadosPessoaisDTO);
+
+        PessoaDadosPessoaisDTO pessoaDadosPessoaisDTO = CreateDTOToPessoaDadosPessoaisDTO(pessoaDadosPessoaisCreateDTO);
+        pessoaDadosPessoaisDTO.setIdPessoa(idPessoa);
+
+        return pessoaDadosPessoaisDTO;
+    }
+
+    public void delete(Integer idPessoa) throws RegraDeNegocioException {
+        Pessoa pessoa = pessoaService.listByIdPessoa(idPessoa);
+        pessoaService.delete(idPessoa);
+        for (DadosPessoaisDTO dadosPessoaisDTO : dadosPessoaisService.getAll()) {
+            if (pessoa.getCpf().equals(dadosPessoaisDTO.getCpf())){
+                dadosPessoaisService.delete(pessoa.getCpf());
+            }
+        }
+    }
+
+    public PessoaCreateDTO convertToPessoaDTO(PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO) {
+        PessoaCreateDTO pessoaCreateDTO = new PessoaCreateDTO();
+
+        pessoaCreateDTO.setNome(pessoaDadosPessoaisCreateDTO.getNome());
+        pessoaCreateDTO.setCpf(pessoaDadosPessoaisCreateDTO.getCpf());
+        pessoaCreateDTO.setDataNascimento(pessoaDadosPessoaisCreateDTO.getDataNascimento());
+        pessoaCreateDTO.setEmail(pessoaDadosPessoaisCreateDTO.getEmail());
+
+        return pessoaCreateDTO;
+    }
+
+    public DadosPessoaisDTO convertToDadosPessoaisDTO(PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO) {
         DadosPessoaisDTO dadosPessoaisDTO = new DadosPessoaisDTO();
 
-        dadosPessoaisDTO.setNome(pessoaDadosPessoaisDTO.getNome());
-        dadosPessoaisDTO.setCpf(pessoaDadosPessoaisDTO.getCpf());
-        dadosPessoaisDTO.setCnh(pessoaDadosPessoaisDTO.getCnh());
-        dadosPessoaisDTO.setNomeMae(pessoaDadosPessoaisDTO.getNomeMae());
-        dadosPessoaisDTO.setNomePai(pessoaDadosPessoaisDTO.getNomePai());
-        dadosPessoaisDTO.setRg(pessoaDadosPessoaisDTO.getRg());
-        dadosPessoaisDTO.setSexo(pessoaDadosPessoaisDTO.getSexo());
-        dadosPessoaisDTO.setTituloEleitor(pessoaDadosPessoaisDTO.getTituloEleitor());
+        dadosPessoaisDTO.setNome(pessoaDadosPessoaisCreateDTO.getNome());
+        dadosPessoaisDTO.setCpf(pessoaDadosPessoaisCreateDTO.getCpf());
+        dadosPessoaisDTO.setCnh(pessoaDadosPessoaisCreateDTO.getCnh());
+        dadosPessoaisDTO.setNomeMae(pessoaDadosPessoaisCreateDTO.getNomeMae());
+        dadosPessoaisDTO.setNomePai(pessoaDadosPessoaisCreateDTO.getNomePai());
+        dadosPessoaisDTO.setRg(pessoaDadosPessoaisCreateDTO.getRg());
+        dadosPessoaisDTO.setSexo(pessoaDadosPessoaisCreateDTO.getSexo());
+        dadosPessoaisDTO.setTituloEleitor(pessoaDadosPessoaisCreateDTO.getTituloEleitor());
 
-        dadosPessoaisService.post(dadosPessoaisDTO);
+        return dadosPessoaisDTO;
     }
 
     public List<PessoaDadosPessoaisDTO> listBuilder (){
@@ -74,15 +104,19 @@ public class PessoaDadosPessoaisService {
         for (int i = 0; i < pessoaDadosPessoaisDTO.size(); i++) {
             for (int j = 0; j < dadosPessoaisDTO.size(); j++) {
                 if (pessoaDadosPessoaisDTO.get(i).getCpf().equals(dadosPessoaisDTO.get(j).getCpf())) {
-                    pessoaDadosPessoaisDTO.get(j).setCnh(dadosPessoaisDTO.get(j).getCnh());
-                    pessoaDadosPessoaisDTO.get(j).setNomeMae(dadosPessoaisDTO.get(j).getNomeMae());
-                    pessoaDadosPessoaisDTO.get(j).setNomePai(dadosPessoaisDTO.get(j).getNomePai());
-                    pessoaDadosPessoaisDTO.get(j).setRg(dadosPessoaisDTO.get(j).getRg());
-                    pessoaDadosPessoaisDTO.get(j).setSexo(dadosPessoaisDTO.get(j).getSexo());
-                    pessoaDadosPessoaisDTO.get(j).setTituloEleitor(dadosPessoaisDTO.get(j).getTituloEleitor());
+                    pessoaDadosPessoaisDTO.get(i).setCnh(dadosPessoaisDTO.get(j).getCnh());
+                    pessoaDadosPessoaisDTO.get(i).setNomeMae(dadosPessoaisDTO.get(j).getNomeMae());
+                    pessoaDadosPessoaisDTO.get(i).setNomePai(dadosPessoaisDTO.get(j).getNomePai());
+                    pessoaDadosPessoaisDTO.get(i).setRg(dadosPessoaisDTO.get(j).getRg());
+                    pessoaDadosPessoaisDTO.get(i).setSexo(dadosPessoaisDTO.get(j).getSexo());
+                    pessoaDadosPessoaisDTO.get(i).setTituloEleitor(dadosPessoaisDTO.get(j).getTituloEleitor());
                 }
             }
         }
         return pessoaDadosPessoaisDTO;
+    }
+
+    public PessoaDadosPessoaisDTO CreateDTOToPessoaDadosPessoaisDTO (PessoaDadosPessoaisCreateDTO pessoaDadosPessoaisCreateDTO){
+        return objectMapper.convertValue(pessoaDadosPessoaisCreateDTO, PessoaDadosPessoaisDTO.class);
     }
 }
