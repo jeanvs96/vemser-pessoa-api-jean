@@ -2,38 +2,36 @@ package br.com.vemser.pessoaapi.service;
 
 import br.com.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.vemser.pessoaapi.dto.PessoaDTO;
-import br.com.vemser.pessoaapi.entity.Pessoa;
+import br.com.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.PessoaRepository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 @Slf4j
 public class PessoaService {
 
-    @Autowired
     private PessoaRepository pessoaRepository;
-    @Autowired
     private EmailService emailService;
-    @Autowired
     private ObjectMapper objectMapper;
 
-    public PessoaService() {
-    }
-
     public List<PessoaDTO> list() {
-        return pessoaRepository.list().stream().map(this::pessoaToPessoaDTO).toList();
+        return pessoaRepository.findAll()
+                .stream()
+                .map(this::entityToPessoaDTO).toList();
     }
 
     public PessoaDTO create(PessoaCreateDTO pessoaCreateDTO) throws RegraDeNegocioException {
         log.info("Criando pessoa...");
-        PessoaDTO pessoaDTO = pessoaToPessoaDTO(pessoaRepository.create(pessoaCreateDtoToPessoa(pessoaCreateDTO)));
+        PessoaDTO pessoaDTO = entityToPessoaDTO(pessoaRepository.save(pessoaCreateDtoToPessoaEntity(pessoaCreateDTO)));
         log.info(pessoaDTO.getNome() + " adicionado(a) ao banco de dados");
 
         emailService.sendEmailCriarPessoa(pessoaDTO);
@@ -41,19 +39,23 @@ public class PessoaService {
         return pessoaDTO;
     }
 
-    public PessoaDTO update(Integer id, PessoaCreateDTO pessoaAtualizarDTO) throws RegraDeNegocioException {
+    public PessoaDTO update(Integer idPessoa, PessoaCreateDTO pessoaAtualizarDTO) throws RegraDeNegocioException {
         log.info("Atualizando pessoa...");
-        PessoaDTO pessoaDTO = pessoaToPessoaDTO(
-                pessoaRepository.update(listByIdPessoa(id), pessoaCreateDtoToPessoa(pessoaAtualizarDTO)));
+        PessoaEntity pessoaEntity = listByIdPessoa(idPessoa);
+        pessoaEntity.setNome(pessoaAtualizarDTO.getNome());
+        pessoaEntity.setDataNascimento(pessoaAtualizarDTO.getDataNascimento());
+        pessoaEntity.setCpf(pessoaAtualizarDTO.getCpf());
+        pessoaEntity.setEmail(pessoaAtualizarDTO.getEmail());
+        PessoaDTO pessoaDTO = entityToPessoaDTO(pessoaRepository.save(pessoaEntity));
+
         log.info("Dados de " + pessoaDTO.getNome() + " atualizados no banco de dados");
-
         emailService.sendEmailAlterarPessoa(pessoaDTO);
-
         return pessoaDTO;
+
     }
 
-    public void delete(Integer id) throws RegraDeNegocioException {
-        Pessoa pessoaDeletar = listByIdPessoa(id);
+    public void delete(Integer idPessoa) throws RegraDeNegocioException {
+        PessoaEntity pessoaDeletar = listByIdPessoa(idPessoa);
         log.warn("Deletando...");
         pessoaRepository.delete(pessoaDeletar);
         log.info(pessoaDeletar.getNome() + " removida do banco de dados");
@@ -62,25 +64,23 @@ public class PessoaService {
     }
 
     public List<PessoaDTO> listByName(String nome) {
-        return pessoaRepository.list()
+        return pessoaRepository.findAll()
                 .stream()
                 .filter(pessoa -> pessoa.getNome().toUpperCase().contains(nome.toUpperCase()))
-                .toList().stream().map(this::pessoaToPessoaDTO).toList();
+                .toList().stream().map(this::entityToPessoaDTO).toList();
     }
 
-    public Pessoa listByIdPessoa(Integer idPessoa) throws RegraDeNegocioException {
-        return pessoaRepository.list().stream()
-                .filter(pessoa -> pessoa.getIdPessoa().equals(idPessoa))
-                .findFirst()
+    public PessoaEntity listByIdPessoa(Integer idPessoa) throws RegraDeNegocioException {
+        return pessoaRepository.findById(idPessoa)
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
     }
 
 
-    public Pessoa pessoaCreateDtoToPessoa (PessoaCreateDTO pessoaCreateDTO){
-        return objectMapper.convertValue(pessoaCreateDTO, Pessoa.class);
+    public PessoaEntity pessoaCreateDtoToPessoaEntity(PessoaCreateDTO pessoaCreateDTO) {
+        return objectMapper.convertValue(pessoaCreateDTO, PessoaEntity.class);
     }
 
-    public PessoaDTO pessoaToPessoaDTO(Pessoa pessoa) {
-        return objectMapper.convertValue(pessoa, PessoaDTO.class);
+    public PessoaDTO entityToPessoaDTO(PessoaEntity pessoaEntity) {
+        return objectMapper.convertValue(pessoaEntity, PessoaDTO.class);
     }
 }

@@ -2,11 +2,12 @@ package br.com.vemser.pessoaapi.service;
 
 import br.com.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.vemser.pessoaapi.dto.ContatoDTO;
-import br.com.vemser.pessoaapi.entity.Contato;
-import br.com.vemser.pessoaapi.entity.Pessoa;
+import br.com.vemser.pessoaapi.entity.ContatoEntity;
+import br.com.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.vemser.pessoaapi.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,28 +16,28 @@ import java.util.List;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class ContatoService {
 
-    @Autowired
-    private ContatoRepository contatoRepository;
-    @Autowired
-    private PessoaService pessoaService;
-    @Autowired
-    private EmailService emailService;
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final ContatoRepository contatoRepository;
+    private final PessoaService pessoaService;
+    private final EmailService emailService;
+    private final ObjectMapper objectMapper;
 
     public List<ContatoDTO> list() {
-        return contatoRepository.list().stream().map(this::contatoToContatoDto).toList();
+        return contatoRepository.findAll()
+                .stream()
+                .map(this::contatoToContatoDto)
+                .toList();
     }
 
     public ContatoDTO create(ContatoCreateDTO contatoCreateDTO, Integer idPessoa) throws RegraDeNegocioException {
-        Pessoa pessoa = pessoaService.listByIdPessoa(idPessoa);
+        PessoaEntity pessoa = pessoaService.listByIdPessoa(idPessoa);
         contatoCreateDTO.setIdPessoa(idPessoa);
 
         log.info("Adicionando contato à pessoa: " + pessoa.getNome());
         ContatoDTO contatoDTO = contatoToContatoDto(
-                contatoRepository.create(contatoCreateDtoToContato(contatoCreateDTO)));
+                contatoRepository.save(contatoCreateDtoToContato(contatoCreateDTO)));
         log.info("Contato adicionado");
 
         emailService.sendEmailAdicionarContato(pessoa);
@@ -45,11 +46,17 @@ public class ContatoService {
     }
 
     public ContatoDTO update(Integer idContato, ContatoCreateDTO contatoAtualizarDTO) throws RegraDeNegocioException {
-        Pessoa pessoa = pessoaService.listByIdPessoa(contatoAtualizarDTO.getIdPessoa());
+        PessoaEntity pessoa = pessoaService.listByIdPessoa(contatoAtualizarDTO.getIdPessoa());
+
+        ContatoEntity contatoEntityRecuperado = contatoByIdContato(idContato);
+        contatoEntityRecuperado.setIdPessoa(contatoAtualizarDTO.getIdPessoa());
+        contatoEntityRecuperado.setTipoContato(contatoAtualizarDTO.getTipoContato());
+        contatoEntityRecuperado.setNumero(contatoAtualizarDTO.getNumero());
+        contatoEntityRecuperado.setDescricao(contatoAtualizarDTO.getDescricao());
 
         log.info("Atualizando contato de " + pessoa.getNome());
         ContatoDTO contatoDTO = contatoToContatoDto(
-                contatoRepository.update(contatoByIdContato(idContato), contatoCreateDtoToContato(contatoAtualizarDTO)));
+                contatoRepository.save(contatoEntityRecuperado));
         log.info("Contato atualizado");
 
         emailService.sendEmailAtualizarContato(pessoa);
@@ -58,7 +65,7 @@ public class ContatoService {
     }
 
     public void delete(Integer idContato) throws RegraDeNegocioException {
-        Pessoa pessoa = pessoaService.listByIdPessoa(contatoByIdContato(idContato).getIdPessoa());
+        PessoaEntity pessoa = pessoaService.listByIdPessoa(contatoByIdContato(idContato).getIdPessoa());
 
         log.warn("Deletando contato...");
         contatoRepository.delete(contatoByIdContato(idContato));
@@ -68,23 +75,22 @@ public class ContatoService {
     }
 
     public List<ContatoDTO> listByIdPessoa(Integer idPessoa) {
-        return contatoRepository.list().stream()
+        return contatoRepository.findAll().stream()
                 .filter(contato -> contato.getIdPessoa().equals(idPessoa))
                 .map(this::contatoToContatoDto).toList();
     }
 
 
-    public Contato contatoByIdContato(Integer idContato) throws RegraDeNegocioException {
-        return contatoRepository.list().stream()
-                .filter(contato -> contato.getIdContato().equals(idContato))
-                .findFirst().orElseThrow(() -> new RegraDeNegocioException("O contato informado não existe"));
+    public ContatoEntity contatoByIdContato(Integer idContato) throws RegraDeNegocioException {
+        return contatoRepository.findById(idContato)
+                .orElseThrow(() -> new RegraDeNegocioException("O contato informado não existe"));
     }
 
-    public Contato contatoCreateDtoToContato(ContatoCreateDTO contatoCreateDTO) {
-        return objectMapper.convertValue(contatoCreateDTO, Contato.class);
+    public ContatoEntity contatoCreateDtoToContato(ContatoCreateDTO contatoCreateDTO) {
+        return objectMapper.convertValue(contatoCreateDTO, ContatoEntity.class);
     }
 
-    public ContatoDTO contatoToContatoDto(Contato contato) {
+    public ContatoDTO contatoToContatoDto(ContatoEntity contato) {
         return objectMapper.convertValue(contato, ContatoDTO.class);
     }
 }

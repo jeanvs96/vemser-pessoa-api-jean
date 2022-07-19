@@ -50,32 +50,32 @@ public class EnderecoController {
         return new ResponseEntity<>(enderecoService.listByIdEndereco(idEndereco), HttpStatus.OK);
     }
 
-    @Operation(summary = "Listar endereços de uma pessoa",
-            description = "Lista todos os endereços de uma pessoa, referenciados pelo ID da pessoa")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "200", description = "Retorna a lista de endereços que fazem referência ao ID da pessoa"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
-                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
-            }
-    )
-    @GetMapping("/{idPessoa}/pessoa")
-    public ResponseEntity<List<EnderecoDTO>> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) {
-        return new ResponseEntity<>(enderecoService.listByIdPessoa(idPessoa), HttpStatus.OK);
-    }
+//    @Operation(summary = "Listar endereços de uma pessoa",
+//            description = "Lista todos os endereços de uma pessoa, referenciados pelo ID da pessoa")
+//    @ApiResponses(
+//            value = {
+//                    @ApiResponse(responseCode = "200", description = "Retorna a lista de endereços que fazem referência ao ID da pessoa"),
+//                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+//                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+//            }
+//    )
+//    @GetMapping("/{idPessoa}/pessoa")
+//    public ResponseEntity<List<EnderecoDTO>> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) {
+//        return new ResponseEntity<>(enderecoService.listByIdPessoa(idPessoa), HttpStatus.OK);
+//    }
 
-    @Operation(summary = "Adicionar endereço", description = "Adiciona um endereço, vinculando-o à uma pessoa existente")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "200", description = "Retorna o corpo do endereço adicionado, com seu novo ID"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
-                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
-            }
-    )
-    @PostMapping("/{idPessoa}")
-    public ResponseEntity<EnderecoDTO> create(@Valid @RequestBody EnderecoCreateDTO enderecoCreateDTO, @PathVariable("idPessoa") Integer idPessoa) throws RegraDeNegocioException {
-        return new ResponseEntity<>(enderecoService.create(enderecoCreateDTO, idPessoa), HttpStatus.OK);
-    }
+//    @Operation(summary = "Adicionar endereço", description = "Adiciona um endereço, vinculando-o à uma pessoa existente")
+//    @ApiResponses(
+//            value = {
+//                    @ApiResponse(responseCode = "200", description = "Retorna o corpo do endereço adicionado, com seu novo ID"),
+//                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+//                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+//            }
+//    )
+//    @PostMapping("/{idPessoa}")
+//    public ResponseEntity<EnderecoDTO> create(@Valid @RequestBody EnderecoCreateDTO enderecoCreateDTO, @PathVariable("idPessoa") Integer idPessoa) throws RegraDeNegocioException {
+//        return new ResponseEntity<>(enderecoService.create(enderecoCreateDTO, idPessoa), HttpStatus.OK);
+//    }
 
     @Operation(summary = "Atualizar endereço", description = "Atualiza um endereço, localizando-o por seu ID")
     @ApiResponses(
