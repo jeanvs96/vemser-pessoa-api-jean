@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f7e271c2-3538-4755-ace5-79f076184cf6" name="Changes" comment="dependencies">
+      <change afterPath="$PROJECT_DIR$/scripts/script_aula1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/controller/EnderecoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/controller/EnderecoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/EnderecoCreateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/EnderecoCreateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/Contato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/ContatoEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/EnderecoEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/PessoaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/ContatoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/ContatoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/EnderecoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/EnderecoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/PessoaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/PessoaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/ContatoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/ContatoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/EnderecoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/EnderecoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/PessoaDadosPessoaisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/PessoaDadosPessoaisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/PessoaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/PessoaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="2BuM77Y7Oc14H2nO6NuCxD45h9t" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jeansilva/Desktop/vemser-pessoa-api-jean&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;8007b8bcc1d58009f6922728939677a2&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.PessoaApiApplication">
+    <configuration name="PessoaApiApplication" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="br.com.vemser.pessoaapi.PessoaApiApplication" />
+      <module name="pessoa-api" />
+      <option name="VM_PARAMETERS" value="-Dspring.mail.username=jean.silva@dbccompany.com.br -Dspring.mail.password=Settembrin1@ -Dspring.datasource.url=jdbc:oracle:thin:@vemser-dbc.dbccompany.com.br:25000:xe -Dspring.datasource.username=VEMSER_JEAN -Dspring.datasource.password=xAPWoDFhWc -Dspring.jpa.properties.hibernate.default_schema=VEMSER_JEAN" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PessoaApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="pessoa-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.vemser.pessoaapi.PessoaApiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.PessoaApiApplication" />
+      <item itemvalue="Spring Boot.PessoaApiApplication" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f7e271c2-3538-4755-ace5-79f076184cf6" name="Changes" comment="" />
+      <created>1657751346970</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657751346970</updated>
+      <workItem from="1657751348266" duration="15677000" />
+      <workItem from="1657786514017" duration="514000" />
+      <workItem from="1657787091866" duration="2839000" />
+      <workItem from="1657816763695" duration="7000000" />
+      <workItem from="1657839212277" duration="129000" />
+      <workItem from="1657839361978" duration="1278000" />
+      <workItem from="1657846396541" duration="5968000" />
+      <workItem from="1657902407056" duration="7228000" />
+      <workItem from="1657937086480" duration="3253000" />
+      <workItem from="1657949883244" duration="597000" />
+      <workItem from="1657985610153" duration="16000" />
+      <workItem from="1657985788681" duration="94000" />
+      <workItem from="1658114562893" duration="579000" />
+      <workItem from="1658115713488" duration="529000" />
+      <workItem from="1658172145279" duration="3239000" />
+      <workItem from="1658188826669" duration="9082000" />
+    </task>
+    <task id="LOCAL-00001" summary="fix: system.properties">
+      <created>1657751556826</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657751556826</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: create e list do PessoaDadosPessoaisDTO">
+      <created>1657760958477</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657760958477</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: update e delete do PessoaDadosPessoaisDTO">
+      <created>1657768538146</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1657768538146</updated>
+    </task>
+    <task id="LOCAL-00004" summary="refatoração">
+      <created>1657788369037</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657788369037</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Documentação de PessoaDadosPessoais">
+      <created>1657789094557</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1657789094557</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Documentação de DadosPessoais">
+      <created>1657789778106</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1657789778106</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix: bug Enum">
+      <created>1657822238158</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1657822238158</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix: bug Enum">
+      <created>1657822822183</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1657822822183</updated>
+    </task>
+    <task id="LOCAL-00009" summary="dependencies">
+      <created>1658188849571</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1658188849571</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix: system.properties" />
+    <MESSAGE value="feat: create e list do PessoaDadosPessoaisDTO" />
+    <MESSAGE value="feat: update e delete do PessoaDadosPessoaisDTO" />
+    <MESSAGE value="refatoração" />
+    <MESSAGE value="Documentação de PessoaDadosPessoais" />
+    <MESSAGE value="Documentação de DadosPessoais" />
+    <MESSAGE value="fix: bug Enum" />
+    <MESSAGE value="dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="dependencies" />
+  </component>
+</project>
