@@ -1,7 +1,7 @@
 package br.com.vemser.pessoaapi.service;
 
 import br.com.vemser.pessoaapi.dto.PessoaDTO;
-import br.com.vemser.pessoaapi.entity.Pessoa;
+import br.com.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -113,7 +113,7 @@ public class EmailService {
         return html;
     }
 
-    public void sendEmailDeletarPessoa(Pessoa pessoa) {
+    public void sendEmailDeletarPessoa(PessoaEntity pessoa) {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -130,7 +130,7 @@ public class EmailService {
 
     }
 
-    public String geContentFromTemplateDeletarPessoa(Pessoa pessoa) throws IOException, TemplateException {
+    public String geContentFromTemplateDeletarPessoa(PessoaEntity pessoa) throws IOException, TemplateException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoa.getNome());
         dados.put("email", from);
@@ -140,7 +140,7 @@ public class EmailService {
         return html;
     }
 
-    public void sendEmailAdicionarEndereco(Pessoa pessoa) throws RegraDeNegocioException {
+    public void sendEmailAdicionarEndereco(PessoaEntity pessoa) throws RegraDeNegocioException {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -156,7 +156,7 @@ public class EmailService {
         }
     }
 
-    public String geContentFromTemplateAdicionarEndereco(Pessoa pessoa) throws IOException, TemplateException, RegraDeNegocioException {
+    public String geContentFromTemplateAdicionarEndereco(PessoaEntity pessoa) throws IOException, TemplateException, RegraDeNegocioException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoa.getNome());
         dados.put("email", from);
@@ -166,7 +166,7 @@ public class EmailService {
         return html;
     }
 
-    public void sendEmailAtualizarEndereco(Pessoa pessoa) throws RegraDeNegocioException {
+    public void sendEmailAtualizarEndereco(PessoaEntity pessoa) throws RegraDeNegocioException {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -182,7 +182,7 @@ public class EmailService {
         }
     }
 
-    public String geContentFromTemplateAtualizarEndereco(Pessoa pessoa) throws IOException, TemplateException, RegraDeNegocioException {
+    public String geContentFromTemplateAtualizarEndereco(PessoaEntity pessoa) throws IOException, TemplateException, RegraDeNegocioException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoa.getNome());
         dados.put("email", from);
@@ -192,7 +192,7 @@ public class EmailService {
         return html;
     }
 
-    public void sendEmailRemoverEndereco(Pessoa pessoa) throws RegraDeNegocioException {
+    public void sendEmailRemoverEndereco(PessoaEntity pessoa) throws RegraDeNegocioException {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -208,7 +208,7 @@ public class EmailService {
         }
     }
 
-    public String geContentFromTemplateRemoverEndereco(Pessoa pessoa) throws IOException, TemplateException, RegraDeNegocioException {
+    public String geContentFromTemplateRemoverEndereco(PessoaEntity pessoa) throws IOException, TemplateException, RegraDeNegocioException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoa.getNome());
         dados.put("email", from);
@@ -218,7 +218,7 @@ public class EmailService {
         return html;
     }
 
-    public void sendEmailAdicionarContato(Pessoa pessoa) throws RegraDeNegocioException {
+    public void sendEmailAdicionarContato(PessoaEntity pessoa) throws RegraDeNegocioException {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -234,7 +234,7 @@ public class EmailService {
         }
     }
 
-    public String geContentFromTemplateAdicionarContato(Pessoa pessoa) throws IOException, TemplateException, RegraDeNegocioException {
+    public String geContentFromTemplateAdicionarContato(PessoaEntity pessoa) throws IOException, TemplateException, RegraDeNegocioException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoa.getNome());
         dados.put("email", from);
@@ -244,7 +244,7 @@ public class EmailService {
         return html;
     }
 
-    public void sendEmailAtualizarContato(Pessoa pessoa) throws RegraDeNegocioException {
+    public void sendEmailAtualizarContato(PessoaEntity pessoa) throws RegraDeNegocioException {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -259,7 +259,7 @@ public class EmailService {
         }
     }
 
-    public String geContentFromTemplateAtualizarContato(Pessoa pessoa) throws IOException, TemplateException, RegraDeNegocioException {
+    public String geContentFromTemplateAtualizarContato(PessoaEntity pessoa) throws IOException, TemplateException, RegraDeNegocioException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoa.getNome());
         dados.put("email", from);
@@ -269,7 +269,7 @@ public class EmailService {
         return html;
     }
 
-    public void sendEmailRemoverContato(Pessoa pessoa) throws RegraDeNegocioException {
+    public void sendEmailRemoverContato(PessoaEntity pessoa) throws RegraDeNegocioException {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -285,7 +285,7 @@ public class EmailService {
         }
     }
 
-    public String geContentFromTemplateRemoverContato(Pessoa pessoa) throws IOException, TemplateException, RegraDeNegocioException {
+    public String geContentFromTemplateRemoverContato(PessoaEntity pessoa) throws IOException, TemplateException, RegraDeNegocioException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoa.getNome());
         dados.put("email", from);
