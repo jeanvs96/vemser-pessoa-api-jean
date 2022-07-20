@@ -1,8 +1,10 @@
 package br.com.vemser.pessoaapi.entity;
 
 import br.com.vemser.pessoaapi.enums.TipoEndereco;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "ENDERECO_PESSOA")
 @Getter
@@ -17,9 +19,6 @@ public class EnderecoEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ENDERECO_SEQ")
     @Column(name = "ID_ENDERECO")
     private Integer idEndereco;
-
-//    @Column(name = "ID_PESSOA")
-//    private Integer idPessoa;
 
     @Column(name = "TIPO")
     private TipoEndereco tipo;
@@ -44,4 +43,11 @@ public class EnderecoEntity {
 
     @Column(name = "PAIS")
     private String pais;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "Pessoa_X_Pessoa_Endereco",
+            joinColumns = @JoinColumn(name = "id_endereco"),
+            inverseJoinColumns = @JoinColumn(name = "id_pessoa"))
+    private Set<PessoaEntity> pessoaEntities;
 }

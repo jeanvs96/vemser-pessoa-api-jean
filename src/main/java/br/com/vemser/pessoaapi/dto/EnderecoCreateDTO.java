@@ -16,9 +16,6 @@ import javax.validation.constraints.Size;
 @ToString
 public class EnderecoCreateDTO {
 
-//    @Schema(description = "ID da pessoa à quem o endereço pertence")
-//    private Integer idPessoa;
-
     @Schema(description = "Tipo de endereço (COMERCIAL/RESIDENCIAL)")
     @NotNull(message = "Informe o tipo de endereço (COMERCIAL/RESIDENCIAL)")
     private TipoEndereco tipo;
