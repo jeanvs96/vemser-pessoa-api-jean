@@ -4,48 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7e271c2-3538-4755-ace5-79f076184cf6" name="Changes" comment="dependencies">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/config/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/controller/PetController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/controller/ProfessorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/PetCreateDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/PetDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/PetEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/ProfessorEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/pk/ProfessorPk.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/enums/TipoPet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/PetRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/ProfessorRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/PetService.java" afterDir="false" />
+    <list default="true" id="f7e271c2-3538-4755-ace5-79f076184cf6" name="Changes" comment="Modulo 3.2 homework 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/controller/EnderecoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/controller/EnderecoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/controller/PessoaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/controller/PessoaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/EnderecoCreateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/EnderecoCreateDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/EnderecoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/EnderecoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/PessoaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/dto/PessoaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/ContatoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/ContatoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/EnderecoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/EnderecoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/PessoaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/entity/PessoaEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/ContatoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/ContatoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/PessoaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/repository/PessoaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/EnderecoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/EnderecoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/PessoaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/vemser/pessoaapi/service/PessoaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/controller/EnderecoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/controller/EnderecoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/controller/PessoaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/controller/PessoaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/dto/EnderecoCreateDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/dto/EnderecoCreateDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/dto/EnderecoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/dto/EnderecoDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/dto/PessoaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/dto/PessoaDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/entity/ContatoEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/entity/ContatoEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/entity/EnderecoEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/entity/EnderecoEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/entity/PessoaEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/entity/PessoaEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/repository/PessoaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/repository/PessoaRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/service/EnderecoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/service/EnderecoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/service/PessoaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/vemser/pessoaapi/service/PessoaService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +67,7 @@
     "last_opened_file_path": "/Users/jeansilva/Desktop/DBC-VemSer/vemser-backend/modulo3.2/vemser-pessoa-api-jean",
     "settings.editor.selected.configurable": "preferences.keymap",
     "show.run.dashboard.notification": "false",
-    "spring.configuration.checksum": "8007b8bcc1d58009f6922728939677a2"
+    "spring.configuration.checksum": "be012f528f3259ba11dc65b743dde9a2"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -181,7 +141,8 @@
       <workItem from="1658115713488" duration="529000" />
       <workItem from="1658172145279" duration="3239000" />
       <workItem from="1658188826669" duration="9082000" />
-      <workItem from="1658249731306" duration="34859000" />
+      <workItem from="1658249731306" duration="35566000" />
+      <workItem from="1658325227597" duration="75000" />
     </task>
     <task id="LOCAL-00001" summary="fix: system.properties">
       <created>1657751556826</created>
@@ -246,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658188849571</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Modulo 3.2 homework 2">
+      <created>1658297575352</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1658297575352</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,6 +252,7 @@
     <MESSAGE value="Documentação de DadosPessoais" />
     <MESSAGE value="fix: bug Enum" />
     <MESSAGE value="dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="dependencies" />
+    <MESSAGE value="Modulo 3.2 homework 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modulo 3.2 homework 2" />
   </component>
 </project>
